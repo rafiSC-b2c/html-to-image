@@ -35,7 +35,8 @@ app.post("/render", async (req, res) => {
 
     await browser.close();
 
-    res.set("Content-Type", "image/png");
+    // 🔴 DAS HAT GEFEHLT 🔴
+    res.setHeader("Content-Type", "image/png");
     res.send(image);
 
   } catch (err) {
@@ -44,6 +45,7 @@ app.post("/render", async (req, res) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("✅ HTML→Image API läuft auf http://localhost:3000/render");
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`HTML→Image API läuft auf Port ${PORT}`);
 });
